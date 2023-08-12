@@ -6,9 +6,23 @@
 2. Navigate into cloned repo and install the dependencies via composer: `cd wiw-coding-assessment && composer install`
 3. Run the script that outputs the JSON results (outputs to STDOUT, not a file): `php bin/shift-parser.php`
 
-# Layout of Code / Tests.
+## Layout of Code / Tests.
 
 All the code I wrote myself is located under the `src/` directory. All of my tests are under the `tests/` directory.
+
+## Running Tests / Static Analysis
+
+Tests can be run via composer:
+
+``bash
+composer tests
+``
+
+Static analysis can also be run via composer:
+
+``bash
+composer analyse
+``
 
 ## What I would improve if I had more time
 
