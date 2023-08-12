@@ -1,0 +1,30 @@
+{
+  "name": "chad/coding-assessment",
+  "require": {
+    "php": ">=8.2",
+    "symfony/console": "^6.3"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^1.10",
+    "phpunit/phpunit": "^10.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Chad\\WhenIWork\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Chad\\WhenIWork\\Tests\\": "tests/"
+    }
+  },
+  "bin": [
+    "bin/shift-parser.php"
+  ],
+  "config": {
+    "sort-packages": true
+  },
+  "scripts": {
+    "tests": "phpunit"
+  }
+}
