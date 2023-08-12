@@ -6,7 +6,12 @@ namespace Chad\WhenIWork;
 
 class WeeklyData
 {
-    private float $totalHours = 0;
+    private float $totalHours = 0.0;
+
+    /**
+     * @var int[]|null
+     */
+    private ?array $invalidShifts = null;
 
     /**
      * @param string $startOfWeek
@@ -17,7 +22,9 @@ class WeeklyData
         private readonly array $shifts,
     ) {
         foreach ($this->shifts as $shift) {
-            $this->totalHours += $shift->getTotalHours();
+            if ($this->isShiftValid($shift->getShiftId())) {
+                $this->totalHours += $shift->getTotalHours();
+            }
         }
     }
 
@@ -49,14 +56,26 @@ class WeeklyData
      */
     public function getInvalidShifts(): array
     {
-        $invalid = [];
+        if ($this->invalidShifts !== null) {
+            return $this->invalidShifts;
+        }
+        $this->invalidShifts = [];
 
         foreach ($this->shifts as $shift) {
             if ($shift->overlapsWithAny(...$this->shifts)) {
-                $invalid[] = $shift->getShiftId();
+                $this->invalidShifts[] = $shift->getShiftId();
             }
         }
 
-        return $invalid;
+        return $this->invalidShifts;
+    }
+
+    public function isShiftValid(int $shiftId): bool
+    {
+        return !in_array(
+            needle: $shiftId,
+            haystack: $this->getInvalidShifts(),
+            strict: true,
+        );
     }
 }

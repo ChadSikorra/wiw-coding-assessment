@@ -25,6 +25,7 @@
     "sort-packages": true
   },
   "scripts": {
-    "tests": "phpunit"
+    "tests": "phpunit",
+    "analyse": "phpstan"
   }
 }

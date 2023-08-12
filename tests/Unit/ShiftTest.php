@@ -57,7 +57,7 @@ class ShiftTest extends TestCase
         );
     }
 
-    public function testOverlapsWithOneWhenItDoes(): void
+    public function testOverlapsWhenItDoes(): void
     {
         $subject = new Shift(
             shiftId: 2442377373,
@@ -74,9 +74,10 @@ class ShiftTest extends TestCase
         );
 
         $this->assertTrue($subject->overlapsWithOne($overlap));
+        $this->assertTrue($subject->overlapsWithAny($overlap));
     }
 
-    public function testOverlapsWithOneWhenItDoesNot(): void
+    public function testOverlapsWhenItDoesNot(): void
     {
         $subject = new Shift(
             shiftId: 2442377373,
@@ -93,5 +94,6 @@ class ShiftTest extends TestCase
         );
 
         $this->assertFalse($subject->overlapsWithOne($overlap));
+        $this->assertFalse($subject->overlapsWithAny($overlap));
     }
 }
